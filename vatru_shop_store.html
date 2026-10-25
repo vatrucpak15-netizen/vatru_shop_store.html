@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="VATRU SHOP — онлайн-магазин речей для щоденного життя.">
+<title>VATRU SHOP — інтернет-магазин</title>
+<style>
+:root{--ink:#17221c;--green:#c9f36a;--paper:#f6f7f2;--muted:#68736b;--line:#e4e8df;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}button,input,select{font:inherit}button{cursor:pointer;border:0}
+.topbar{background:var(--ink);color:#fff;text-align:center;padding:9px 14px;font-size:12px;letter-spacing:.08em}
+header{display:flex;align-items:center;justify-content:space-between;padding:20px clamp(18px,5vw,72px);background:var(--paper);border-bottom:1px solid var(--line);gap:20px}
+.logo{font-weight:950;font-size:23px;letter-spacing:-1.4px}.logo span{background:var(--green);padding:2px 5px;border-radius:5px;margin-left:3px}
+nav{display:flex;gap:26px;font-size:13px;font-weight:650}.actions{display:flex;align-items:center;gap:10px}
+.search{border:1px solid var(--line);border-radius:30px;padding:10px 14px;background:white;width:180px;outline-color:var(--green)}
+.cart{background:var(--ink);color:white;padding:11px 15px;border-radius:30px;font-size:13px;font-weight:750}
+.hero{margin:24px clamp(14px,3vw,42px) 0;background:var(--green);border-radius:24px;min-height:390px;display:grid;grid-template-columns:1.1fr .9fr;overflow:hidden;position:relative}
+.hero-copy{padding:clamp(30px,6vw,78px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;z-index:1}
+.kicker{font-size:11px;font-weight:850;letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px}
+h1{font-size:clamp(43px,6.5vw,82px);line-height:.94;letter-spacing:-.065em;margin:0 0 22px;max-width:650px}
+.hero p{max-width:390px;line-height:1.65;color:#34402c;margin:0 0 25px}
+.primary{background:var(--ink);color:white;border-radius:30px;padding:14px 22px;font-weight:750;font-size:13px;transition:transform .2s}.primary:hover{transform:translateY(-2px)}
+.hero-art{display:flex;align-items:center;justify-content:center;min-height:310px;position:relative}
+.orbit{width:min(75%,360px);aspect-ratio:1;border-radius:50%;border:1px solid #8cb444;position:absolute}
+.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid #8cb444;border-radius:50%;inset:13%}
+.orbit:after{inset:27%}
+.bag{width:175px;height:195px;background:#f8f8f2;border-radius:15px 15px 28px 28px;position:relative;transform:rotate(-8deg);box-shadow:18px 22px 0 #9bc34d;display:flex;align-items:center;justify-content:center;font-size:44px}
+.bag:before{content:"";position:absolute;width:70px;height:50px;border:8px solid #f8f8f2;border-bottom:0;border-radius:45px 45px 0 0;top:-38px}
+.sticker{position:absolute;right:12%;top:18%;background:var(--ink);color:white;border-radius:50%;width:76px;height:76px;display:grid;place-items:center;text-align:center;font-size:11px;font-weight:850;transform:rotate(12deg)}
+.section{padding:52px clamp(18px,5vw,72px)}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:24px}
+h2{font-size:clamp(28px,4vw,42px);letter-spacing:-.05em;margin:0}.sub{color:var(--muted);font-size:13px;margin-top:8px}
+.categories{display:flex;gap:9px;flex-wrap:wrap;margin:22px 0 28px}
+.chip{background:#fff;border:1px solid var(--line);padding:10px 16px;border-radius:25px;font-size:12px;font-weight:700}.chip.active,.chip:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.product{background:#fff;border:1px solid var(--line);border-radius:17px;overflow:hidden;transition:transform .2s,box-shadow .2s}.product:hover{transform:translateY(-4px);box-shadow:0 12px 30px #18251a0b}
+.product-art{height:210px;display:grid;place-items:center;position:relative;font-size:76px;background:#eef1e9}
+.product:nth-child(4n+2) .product-art{background:#f6eadc}.product:nth-child(4n+3) .product-art{background:#e7ebf6}.product:nth-child(4n+4) .product-art{background:#f3e5e9}
+.tag{position:absolute;left:12px;top:12px;background:white;border-radius:20px;padding:6px 9px;font-size:10px;font-weight:800}
+.product-info{padding:15px}.product-name{font-size:14px;font-weight:750;margin:0 0 6px}.product-desc{font-size:11px;color:var(--muted);margin:0 0 14px}
+.product-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px}.price{font-weight:900;font-size:16px}.add{background:var(--green);color:var(--ink);border-radius:50%;width:36px;height:36px;font-size:21px;font-weight:600}.add:hover{background:var(--ink);color:white}
+.empty{grid-column:1/-1;padding:40px;text-align:center;color:var(--muted)}
+.benefits{margin:0 clamp(14px,3vw,42px);padding:30px;border-radius:20px;background:#fff;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.benefit{display:flex;gap:13px;align-items:flex-start}.benefit-icon{width:42px;height:42px;border-radius:12px;background:#edf5df;display:grid;place-items:center;font-size:20px;flex-shrink:0}.benefit b{font-size:13px}.benefit p{font-size:12px;line-height:1.5;color:var(--muted);margin:5px 0 0}
+.newsletter{margin:52px clamp(14px,3vw,42px);padding:clamp(26px,5vw,58px);background:var(--ink);color:white;border-radius:22px;display:flex;justify-content:space-between;align-items:center;gap:24px}.newsletter h2{max-width:450px}.newsletter p{color:#c4cdc5;font-size:13px}.signup{display:flex;gap:8px;max-width:420px;width:100%}.signup input{min-width:0;flex:1;border:0;border-radius:30px;padding:13px 16px;outline-color:var(--green)}.signup button{background:var(--green);color:var(--ink);border-radius:30px;padding:0 18px;font-weight:800}
+footer{padding:28px clamp(18px,5vw,72px);display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
+dialog{border:0;border-radius:20px;width:min(480px,calc(100% - 28px));padding:0;box-shadow:0 25px 90px #0004}dialog::backdrop{background:#111a15a8}.modal-head{padding:22px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.modal-body{padding:22px}.close{background:#f0f1ed;border-radius:50%;width:34px;height:34px;font-size:20px}.cart-row{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px}.qty{display:flex;align-items:center;gap:8px}.qty button{width:25px;height:25px;border-radius:50%;background:#edf1e8}.total{display:flex;justify-content:space-between;font-weight:900;padding:20px 0;font-size:17px}.checkout{width:100%;padding:14px;background:var(--green);border-radius:30px;font-weight:850}.note{font-size:11px;color:var(--muted);line-height:1.5;margin-top:12px}
+@media(max-width:850px){nav{display:none}.search{width:140px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{grid-template-columns:1fr .7fr}.hero-art{min-width:130px}.bag{width:125px;height:150px;font-size:34px}.sticker{right:5%;top:10%;width:60px;height:60px;font-size:9px}.benefits{grid-template-columns:1fr}.newsletter{align-items:flex-start;flex-direction:column}}
+@media(max-width:520px){header{padding:15px;gap:8px}.logo{font-size:19px}.search{width:112px;padding:9px 10px;font-size:12px}.cart{padding:10px 12px}.hero{grid-template-columns:1fr;margin-top:14px}.hero-copy{padding:30px 24px 10px}.hero-art{min-height:220px}.orbit{width:210px}.bag{width:115px;height:130px}.sticker{right:15%;top:8%}.section{padding:38px 16px}.product-art{height:160px;font-size:60px}.product-info{padding:12px}.newsletter{margin-top:35px}.signup{flex-direction:column}.signup button{padding:13px}}
+</style>
+</head>
+<body>
+<div class="topbar">ЗРУЧНІ ПОКУПКИ • СТИЛЬНІ ЗНАХІДКИ • ТВОЇ ЩОДЕННІ РЕЧІ</div>
+<header>
+  <a class="logo" href="#">VATRU<span>SHOP</span></a>
+  <nav><a href="#catalog">Каталог</a><a href="#benefits">Переваги</a><a href="#contacts">Контакти</a></nav>
+  <div class="actions"><input class="search" id="search" placeholder="Знайти товар…" aria-label="Пошук товарів"><button class="cart" id="openCart">Кошик <span id="cartCount">0</span></button></div>
+</header>
+<main>
+<section class="hero">
+ <div class="hero-copy"><div class="kicker">Твій простір знахідок</div><h1>Знайди своє.<br>Купуй зручно.</h1><p>Речі для життя, роботи й відпочинку — в одному місці. Обирай те, що подобається саме тобі.</p><a class="primary" href="#catalog">Переглянути каталог ↗</a></div>
+ <div class="hero-art" aria-label="Ілюстрація пакунка"><div class="orbit"></div><div class="bag">✦</div><div class="sticker">КЛАСНІ<br>ЗНАХІДКИ</div></div>
+</section>
+<section class="section" id="catalog">
+ <div class="section-head"><div><h2>Популярні товари</h2><div class="sub">Добірка речей на кожен день</div></div><div class="sub" id="resultCount">8 товарів</div></div>
+ <div class="categories" id="categories"><button class="chip active" data-cat="Усі">Усі товари</button><button class="chip" data-cat="Аксесуари">Аксесуари</button><button class="chip" data-cat="Техніка">Техніка</button><button class="chip" data-cat="Дім">Для дому</button><button class="chip" data-cat="Одяг">Одяг</button></div>
+ <div class="grid" id="products"></div>
+</section>
+<section class="benefits" id="benefits">
+ <div class="benefit"><div class="benefit-icon">🚚</div><div><b>Зручна доставка</b><p>Обери спосіб доставки під час оформлення замовлення.</p></div></div>
+ <div class="benefit"><div class="benefit-icon">🔒</div><div><b>Покупки без зайвого клопоту</b><p>Простий каталог і зрозумілий процес замовлення.</p></div></div>
+ <div class="benefit"><div class="benefit-icon">💬</div><div><b>Ми на зв’язку</b><p>Залиш контакти — і продавець зможе підтвердити замовлення.</p></div></div>
+</section>
+<section class="newsletter" id="contacts"><div><h2>Є питання? Ми допоможемо.</h2><p>Залиш свій email, щоб отримати новини магазину.</p></div><form class="signup" id="signup"><input type="email" placeholder="Твій email" required aria-label="Твій email"><button type="submit">Підписатися ↗</button></form></section>
+</main>
+<footer><a class="logo" href="#">VATRU<span>SHOP</span></a><span>© <span id="year"></span> VATRU SHOP · Магазин — демонстраційна версія</span><span>Умови · Доставка · Повернення</span></footer>
+<dialog id="cartDialog"><div class="modal-head"><b>Твій кошик</b><button class="close" id="closeCart" aria-label="Закрити">×</button></div><div class="modal-body"><div id="cartItems"></div><div class="total"><span>Разом</span><span id="total">0 ₴</span></div><form id="orderForm"><input id="customerName" required placeholder="Твоє ім’я" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;margin-bottom:9px"><input id="customerPhone" required type="tel" placeholder="Номер телефону" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;margin-bottom:9px"><input id="deliveryCity" required placeholder="Місто / населений пункт" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;margin-bottom:9px"><input id="deliveryBranch" required placeholder="Нова пошта: номер відділення або поштомата" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;margin-bottom:9px"><label for="paymentMethod" style="display:block;font-size:12px;font-weight:750;margin:4px 0 6px">Спосіб оплати</label><select id="paymentMethod" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;margin-bottom:12px"><option>Післяплата при отриманні</option><option>Оплата карткою (після підключення платіжного сервісу)</option></select><button class="checkout" type="submit">Підготувати замовлення</button></form><div class="note">Замовлення поки не надсилається автоматично власнику магазину. Після оформлення можна зберегти його текст і відкрити WhatsApp. Оплата карткою потребує підключення платіжного сервісу.</div></div></dialog>
+<script>
+const items=[
+{id:1,name:"Міська сумка",desc:"Легка та містка на кожен день",price:690,cat:"Аксесуари",emoji:"👜",tag:"ХІТ"},
+{id:2,name:"Безпровідні навушники",desc:"Музика та дзвінки будь-де",price:1190,cat:"Техніка",emoji:"🎧",tag:"ПОПУЛЯРНЕ"},
+{id:3,name:"Настільна лампа",desc:"Затишне світло для вечорів",price:850,cat:"Дім",emoji:"💡",tag:""},
+{id:4,name:"Базова худі",desc:"Комфортний крій на щодень",price:990,cat:"Одяг",emoji:"🧥",tag:"НОВИНКА"},
+{id:5,name:"Сонцезахисні окуляри",desc:"Лаконічний акцент образу",price:450,cat:"Аксесуари",emoji:"🕶️",tag:""},
+{id:6,name:"Портативна колонка",desc:"Улюблений звук у дорозі",price:1390,cat:"Техніка",emoji:"🔊",tag:""},
+{id:7,name:"Керамічна чашка",desc:"Маленький ритуал щодня",price:290,cat:"Дім",emoji:"☕",tag:""},
+{id:8,name:"Кепка мінімал",desc:"Зручний аксесуар для прогулянок",price:390,cat:"Одяг",emoji:"🧢",tag:""}
+];
+let activeCat="Усі",cart={};
+const money=n=>n.toLocaleString("uk-UA")+" ₴";
+function render(){
+ const q=document.getElementById("search").value.trim().toLowerCase();
+ const filtered=items.filter(p=>(activeCat==="Усі"||p.cat===activeCat)&&(`${p.name} ${p.desc} ${p.cat}`.toLowerCase().includes(q)));
+ document.getElementById("products").innerHTML=filtered.length?filtered.map(p=>`<article class="product"><div class="product-art"><span>${p.emoji}</span>${p.tag?`<span class="tag">${p.tag}</span>`:""}</div><div class="product-info"><p class="product-name">${p.name}</p><p class="product-desc">${p.desc}</p><div class="product-bottom"><span class="price">${money(p.price)}</span><button class="add" data-add="${p.id}" aria-label="Додати ${p.name}">+</button></div></div></article>`).join(""):'<div class="empty">Нічого не знайдено. Спробуй інший запит.</div>';
+ document.getElementById("resultCount").textContent=`${filtered.length} ${filtered.length===1?"товар":filtered.length<5?"товари":"товарів"}`;
+ document.getElementById("cartCount").textContent=Object.values(cart).reduce((a,b)=>a+b,0);
+}
+function renderCart(){
+ const chosen=items.filter(p=>cart[p.id]);
+ document.getElementById("cartItems").innerHTML=chosen.length?chosen.map(p=>`<div class="cart-row"><div><b>${p.name}</b><div style="color:var(--muted);margin-top:5px">${money(p.price)} × ${cart[p.id]}</div></div><div class="qty"><button data-minus="${p.id}">−</button><span>${cart[p.id]}</span><button data-plus="${p.id}">+</button></div></div>`).join(""):'<p style="color:var(--muted);font-size:13px">Кошик поки порожній. Додай щось із каталогу 🙂</p>';
+ document.getElementById("total").textContent=money(chosen.reduce((sum,p)=>sum+p.price*cart[p.id],0));
+ document.getElementById("cartCount").textContent=Object.values(cart).reduce((a,b)=>a+b,0);
+}
+document.getElementById("products").addEventListener("click",e=>{const b=e.target.closest("[data-add]");if(b){const id=+b.dataset.add;cart[id]=(cart[id]||0)+1;render();}});
+document.getElementById("categories").addEventListener("click",e=>{const b=e.target.closest("[data-cat]");if(!b)return;activeCat=b.dataset.cat;document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("active",x===b));render();});
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("openCart").onclick=()=>{renderCart();document.getElementById("cartDialog").showModal();};
+document.getElementById("closeCart").onclick=()=>document.getElementById("cartDialog").close();
+document.getElementById("cartItems").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const id=+(b.dataset.plus||b.dataset.minus);if(b.dataset.plus)cart[id]=(cart[id]||0)+1;if(b.dataset.minus){cart[id]--;if(cart[id]<=0)delete cart[id];}renderCart();render();});
+document.getElementById("orderForm").addEventListener("submit",e=>{e.preventDefault();const chosen=items.filter(p=>cart[p.id]);if(!chosen.length){alert("Спочатку додай товари в кошик.");return;}const lines=chosen.map(p=>`${p.name} — ${cart[p.id]} шт. × ${money(p.price)}`).join("\n");const msg=`ЗАМОВЛЕННЯ VATRU SHOP\nІм’я: ${document.getElementById("customerName").value}\nТелефон: ${document.getElementById("customerPhone").value}\nМісто: ${document.getElementById("deliveryCity").value}\nДоставка: Нова пошта, ${document.getElementById("deliveryBranch").value}\nОплата: ${document.getElementById("paymentMethod").value}\n\n${lines}\n\nРазом: ${money(chosen.reduce((s,p)=>s+p.price*cart[p.id],0))}`;const blob=new Blob([msg],{type:"text/plain;charset=utf-8"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="zamovlennya-vatru-shop.txt";a.click();URL.revokeObjectURL(url);const wa="https://wa.me/?text="+encodeURIComponent(msg);if(confirm("Файл замовлення збережено. Відкрити WhatsApp, щоб надіслати текст замовлення продавцю?"))window.open(wa,"_blank","noopener");});
+document.getElementById("signup").addEventListener("submit",e=>{e.preventDefault();alert("Дякуємо! Це демо-форма — підписки ще не зберігаються.");e.target.reset();});
+document.getElementById("year").textContent=new Date().getFullYear();render();
+</script>
+</body>
+</html>
